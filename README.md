@@ -1,6 +1,6 @@
 # llm-enhanced-ehr
 
-Contribution to the [LabLabAI AI Challenge Hackathon](https://lablab.ai/event/ai-challenge-with-gpt-3-5-codex-dall-e-and-whisper-api) October 2023. The application should allow the user to interact with a large language model (GPT-3.5, GPT-4) supporting work on synthetic health data that comes in the electronic health record interoperability FHIR format.
+Contribution to the [LabLabAI AI Challenge Hackathon](https://lablab.ai/event/ai-challenge-with-gpt-3-5-codex-dall-e-and-whisper-api) October 2023. The application should allow the user to interact with a large language model (GPT-3.5, GPT-4) and support working on synthetic health data that comes in the electronic health record interoperability format FHIR.
 
 
 
@@ -13,5 +13,5 @@ Contribution to the [LabLabAI AI Challenge Hackathon](https://lablab.ai/event/ai
 - [ ] define workflows/queries, document examples
 - [ ] prepare submission - screenrecording, presentation
 
-optional features:
+Optional features:
 - [ ] set up free database to store user feedback ([streamlit feedback](https://github.com/trubrics/streamlit-feedback))
