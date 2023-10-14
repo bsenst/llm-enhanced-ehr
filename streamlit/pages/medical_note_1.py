@@ -2,6 +2,12 @@ import streamlit as st
 
 st.title("Medical Note 1")
 
+# Initialize st.session_state if it hasn't been initialized yet
+if "medical_note1" not in st.session_state:
+    st.session_state.medical_note1 = None
+
+# Now you can use st.session_state["medical_note1"] safely
+
 st.write(st.session_state["medical_note1"])
 
 st.title("Example LLM Questions & Answers")
