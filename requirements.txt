@@ -4,3 +4,4 @@ sketch
 langchain
 clarifai
 python-dotenv
+openai
