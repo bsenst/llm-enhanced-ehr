@@ -14,11 +14,11 @@ load_dotenv()
 st.title("LLM enhanced Medical Notes")
 
 folder = "streamlit/assets/"
-files = [file for file in os.listdir(folder)]
+files = [file.split(".")[0] for file in os.listdir(folder)]
 
 for file in files:
-    with open(folder+file) as infile:
-        st.session_state[file.split(".")[0]] = infile.read()
+    with open(folder+file+".txt") as infile:
+        st.session_state[file] = infile.read()
 
 # USER_ID = "openai"
 # APP_ID = "chat-completion"
@@ -30,12 +30,13 @@ for file in files:
 
 medical_note = st.selectbox(
    "Which medical note do you want to query?",
-   (files),
+   ([file for file in st.session_state.keys() if file != "key"]),
 )
 
-openai_api_key = os.environ.get("openai")
-
 with st.sidebar:
+    
+    openai_api_key = os.environ.get("openai")
+
     if not openai_api_key.startswith("sk-"):
         openai_api_key = st.text_input("Enter your OpenAI API key here:", type="password")  
     
@@ -60,6 +61,10 @@ if "key" in st.session_state:
     question = st.text_input("Enter your query for the medical note")
     if question:
         st.caption(f"Querying {medical_note} ...")
-        st.write(qa_document_chain.run(input_document=medical_note, question=question))
+        st.write(qa_document_chain.run(input_document=st.session_state[medical_note], question=question))
 else:
     st.warning("Please enter an OpenAI API key in the sidebar to proceed.")
+
+st.markdown("### Medical Note")
+
+st.write(st.session_state[medical_note])
