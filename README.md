@@ -4,13 +4,21 @@ Contribution to the [LabLabAI AI Challenge Hackathon](https://lablab.ai/event/ai
 
 # Run the application
 
-`git clone https://github.com/bsenst/llm-enhanced-ehr`
+```bash
+git clone https://github.com/bsenst/llm-enhanced-ehr
+```
 
-`cd llm-enhanced-ehr`
+```bash
+cd llm-enhanced-ehr
+```
 
-`pip install -r streamlit/requirements.txt`
+```bash
+pip install -r streamlit/requirements.txt
+```
 
-`streamlit run streamlit/app.py`
+```bash
+streamlit run streamlit/app.py
+```
 
 # ToDo
 
