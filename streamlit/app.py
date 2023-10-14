@@ -1,8 +1,9 @@
 import os
 import streamlit as st
+import openai
 import pandas as pd
 
-from langchain.llms import Clarifai
+# from langchain.llms import Clarifai
 from langchain.llms import OpenAI
 from langchain.chains.question_answering import load_qa_chain
 from langchain.chains import AnalyzeDocumentChain
@@ -27,17 +28,23 @@ for file in files:
 #     pat=os.environ.get("CLARIFAI_PAT"), user_id=USER_ID, app_id=APP_ID, model_id=MODEL_ID
 # )
 
-llm = OpenAI(temperature=0, openai_api_key=os.environ.get("openai"))
-qa_chain = load_qa_chain(llm)
-qa_document_chain = AnalyzeDocumentChain(combine_docs_chain=qa_chain)
-
 medical_note = st.selectbox(
    "Which medical note do you want to query?",
    (files),
 )
 
-question = st.text_input("Enter your query for the medical note")
+openai_api_key = os.environ.get("openai")
 
-if question:
-    st.caption(f"Querying {medical_note} ...")
-    st.write(qa_document_chain.run(input_document=medical_note, question=question))
+if not openai_api_key:
+    st.warning("Please enter an OpenAI key in the sidebar to proceed.")  
+    with st.sidebar:
+        openai_api_key = st.text_input("Enter OpenAI key", type="password")
+else:
+    llm = OpenAI(temperature=0, openai_api_key=openai_api_key)
+    qa_chain = load_qa_chain(llm)
+    qa_document_chain = AnalyzeDocumentChain(combine_docs_chain=qa_chain)
+    question = st.text_input("Enter your query for the medical note")
+
+    if question:
+        st.caption(f"Querying {medical_note} ...")
+        st.write(qa_document_chain.run(input_document=medical_note, question=question))
