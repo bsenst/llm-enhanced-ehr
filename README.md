@@ -2,15 +2,23 @@
 
 Contribution to the [LabLabAI AI Challenge Hackathon](https://lablab.ai/event/ai-challenge-with-gpt-3-5-codex-dall-e-and-whisper-api) October 2023. The application should allow the user to interact with a large language model (GPT-3.5, GPT-4) and support working on synthetic health data that comes in the electronic health record interoperability format FHIR.
 
+# Run the application
 
+`git clone https://github.com/bsenst/llm-enhanced-ehr`
+
+`cd llm-enhanced-ehr`
+
+`pip install -r streamlit/requirements.txt`
+
+`streamlit run streamlit/app.py`
 
 # ToDo
 
-- [ ] explore [synthea dataset](https://github.com/synthetichealth/synthea)
-- [ ] create a user interface to display (parts of the) synthea data ([streamlit](https://streamlit.io), [openehr](https://openehr.org), [openemr](https://www.open-emr.org))
-- [ ] integrate LLM ([clarifai](https://www.clarifai.com), [sketch](https://pypi.org/project/sketch/))
-- [ ] connect synthea data with LLM ([langchain](https://www.langchain.com/), [llama-index](https://www.llamaindex.ai/), RAG)
-- [ ] define workflows/queries, document examples
+- [X] explore [synthea dataset](https://github.com/synthetichealth/synthea)
+- [X] create a user interface to display (parts of the) synthea data ([streamlit](https://streamlit.io), [openehr](https://openehr.org), [openemr](https://www.open-emr.org))
+- [X] integrate LLM ([clarifai](https://www.clarifai.com), [sketch](https://pypi.org/project/sketch/))
+- [X] connect synthea data with LLM ([langchain](https://www.langchain.com/), [llama-index](https://www.llamaindex.ai/), RAG)
+- [X] define workflows/queries, document examples
 - [ ] prepare submission - screenrecording, presentation
 
 Optional features:
