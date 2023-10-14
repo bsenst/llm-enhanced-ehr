@@ -1,0 +1,79 @@
+Patient Name: John Doe
+
+Age: 45
+
+Gender: Male
+
+Medical Record Number (MRN): 123456
+
+Date of Visit: October 14, 2023
+
+**Reason for Visit:**
+
+Mr. Doe presents today with complaints of persistent lower back pain that started approximately two weeks ago. He describes the pain as a dull ache, primarily located on the right side of his lower back. He rates the pain as a 6/10 on the pain scale. He denies any radiation of the pain down his legs or any associated numbness or weakness.
+
+**Medical History:**
+
+Hypertension
+Hyperlipidemia
+Type 2 Diabetes Mellitus
+Previous L5-S1 Disc Herniation (resolved with conservative treatment)
+
+**Current Symptoms:**
+
+Lower back pain (right-sided, dull ache, 6/10 intensity)
+No radiation down legs
+No numbness or weakness
+
+**Vital Signs:**
+
+Blood Pressure: 140/90 mmHg
+
+Heart Rate: 75 bpm
+
+Respiratory Rate: 16 breaths/min
+
+Temperature: 98.6°F
+
+Allergies: None known
+
+Medications:
+Lisinopril 20 mg daily
+Atorvastatin 40 mg daily
+Metformin 1000 mg twice daily
+
+**Physical Examination:**
+
+Inspection: No visible abnormalities or deformities. No signs of skin discoloration or swelling over the lower back area.
+
+Palpation: Tenderness elicited on the right side of the lumbar spine, localized to the L5-S1 region. No masses or deformities appreciated.
+
+Range of Motion: Limited lumbar flexion due to pain. Straight leg raise test is negative bilaterally.
+
+Neurological Examination: Strength, sensation, and reflexes are within normal limits in both lower extremities.
+
+**Assessment and Plan:**
+
+Chronic Medical Conditions:
+
+Hypertension, Hyperlipidemia, Type 2 Diabetes Mellitus
+
+Current management with Lisinopril, Atorvastatin, and Metformin will continue. BP monitoring advised.
+
+Acute Issue:
+Lower back pain, likely musculoskeletal in nature.
+Differential diagnosis includes muscle strain, possible exacerbation of prior disc herniation.
+
+Plan for conservative management:
+NSAIDs for pain relief (Naproxen 500 mg twice daily as needed).
+Activity modification and gentle exercises recommended.
+Follow-up in two weeks for re-evaluation.
+
+**Patient Education:**
+
+Mr. Doe advised on proper lifting techniques and back-strengthening exercises.
+Discussed potential contributing factors such as posture and ergonomics.
+
+**Follow-Up:**
+
+Scheduled follow-up appointment on October 28, 2023, for re-assessment of lower back pain.
