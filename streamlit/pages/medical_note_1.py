@@ -1,6 +1,10 @@
 import streamlit as st
 
+st.title("Medical Note 1")
+
 st.write(st.session_state["medical_note1"])
+
+st.header("Example LLM Questions & Answers")
 
 with st.expander("What conditions does the patient have?"):
     st.write("Hypertension, Hyperlipidemia, Type 2 Diabetes Mellitus.")
