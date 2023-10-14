@@ -33,18 +33,32 @@ medical_note = st.selectbox(
    (files),
 )
 
-openai_api_key = os.environ.get("openai")
+# openai_api_key = os.environ.get("openai")
 
-if not openai_api_key:
-    st.warning("Please enter an OpenAI key in the sidebar to proceed.")  
-    with st.sidebar:
-        openai_api_key = st.text_input("Enter OpenAI key", type="password")
-else:
+with st.sidebar:
+    openai_api_key = st.text_input("Enter your OpenAI API key here:", type="password")
+    # Validate the user's key
+    if openai_api_key.startswith("sk-"):
+        # Set the key for the OpenAI library
+        openai.api_key = openai_api_key
+        try:
+            # Test if the key works by listing the available engines
+            engines = openai.Engine.list()
+            # Display a success message
+            st.success("Your OpenAI API key is valid!")
+
+            st.session_state["key"] = openai_api_key  # Assign the variable to a key
+        except openai.error.AuthenticationError:
+            # Display an error message
+            st.error("Your OpenAI API key is invalid.")
+
+if "key" in st.session_state:
     llm = OpenAI(temperature=0, openai_api_key=openai_api_key)
     qa_chain = load_qa_chain(llm)
     qa_document_chain = AnalyzeDocumentChain(combine_docs_chain=qa_chain)
     question = st.text_input("Enter your query for the medical note")
-
     if question:
         st.caption(f"Querying {medical_note} ...")
         st.write(qa_document_chain.run(input_document=medical_note, question=question))
+else:
+    st.warning("Please enter an OpenAI API key in the sidebar to proceed.")
