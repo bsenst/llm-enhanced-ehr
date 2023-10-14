@@ -33,10 +33,15 @@ medical_note = st.selectbox(
    (files),
 )
 
-# openai_api_key = os.environ.get("openai")
+# 
 
 with st.sidebar:
-    openai_api_key = st.text_input("Enter your OpenAI API key here:", type="password")
+    
+    openai_api_key = os.environ.get("openai")
+    
+    if openai_api_key is None:
+        openai_api_key = st.text_input("Enter your OpenAI API key here:", type="password")
+    
     # Validate the user's key
     if openai_api_key.startswith("sk-"):
         # Set the key for the OpenAI library
