@@ -103,7 +103,7 @@ load_dotenv()
 
 st.title("LLM enhanced Medical Notes")
 
-folder = "C:/Users/pak/Desktop/llm-enhanced-ehr/llm-enhanced-ehr/streamlit/assets/"
+folder = "streamlit/assets/"
 files = [file.split(".")[0] for file in os.listdir(folder)]
 
 for file in files:
