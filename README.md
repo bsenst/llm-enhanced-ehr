@@ -2,6 +2,8 @@
 
 Contribution to the [LabLabAI AI Challenge Hackathon](https://lablab.ai/event/ai-challenge-with-gpt-3-5-codex-dall-e-and-whisper-api) October 2023. The application should allow the user to interact with a large language model (GPT-3.5, GPT-4) and support working on synthetic health data that comes in the electronic health record interoperability format FHIR.
 
+![application-architecture](https://github.com/bsenst/llm-enhanced-ehr/assets/8211411/5a946f4b-8ac1-469a-a145-0aa9e7576e28)
+
 # Run the application
 
 ```bash

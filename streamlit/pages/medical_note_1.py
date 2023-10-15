@@ -2,6 +2,9 @@ import streamlit as st
 
 st.title("Medical Note 1")
 
+if "medical_note_1" not in st.session_state:
+    st.session_state.medical_note_1 = None
+
 st.write(st.session_state["medical_note_1"])
 
 st.title("Example LLM Questions & Answers")
