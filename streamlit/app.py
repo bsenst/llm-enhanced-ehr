@@ -55,7 +55,7 @@ with st.sidebar:
             st.error("Your OpenAI API key is invalid.")
 
 if "key" in st.session_state:
-    llm = OpenAI(temperature=0, openai_api_key=openai_api_key)
+    llm = OpenAI(temperature=0, openai_api_key=openai_api_key, model="gpt-3.5-turbo")
     qa_chain = load_qa_chain(llm)
     qa_document_chain = AnalyzeDocumentChain(combine_docs_chain=qa_chain)
     question = st.text_input("Enter your query for the medical note")
