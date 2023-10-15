@@ -158,7 +158,7 @@ if "key" in st.session_state:
         #     optional_text_label="[Optional] Please provide an explanation", )
         #
         # Run chain
-        llm = ChatOpenAI(temperature=0, model="gpt-3.5-turbo")
+        llm = ChatOpenAI(temperature=0, model="gpt-3.5-turbo",openai_api_key=openai_api_key)
         chain = create_extraction_chain(schema, llm)
         data = chain.run(medical_note)
         with open("data.json", "w") as f:  # open the file in write mode
