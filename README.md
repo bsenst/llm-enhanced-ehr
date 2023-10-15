@@ -32,7 +32,7 @@ streamlit run streamlit/app.py
 - [X] integrate LLM ([clarifai](https://www.clarifai.com), [sketch](https://pypi.org/project/sketch/))
 - [X] connect synthea data with LLM ([langchain](https://www.langchain.com/), [llama-index](https://www.llamaindex.ai/), RAG)
 - [X] define workflows/queries, document examples
-- [ ] prepare submission - screenrecording, presentation
+- [X] prepare submission - screenrecording, presentation
 
 Optional features:
 - [ ] set up free database to store user feedback ([streamlit feedback](https://github.com/trubrics/streamlit-feedback))

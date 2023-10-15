@@ -13,6 +13,8 @@ load_dotenv()
 
 st.title("LLM enhanced Medical Notes")
 
+st.write("See the project description https://lablab.ai/event/ai-challenge-with-gpt-3-5-codex-dall-e-and-whisper-api/fritzlabs/llm-enhanced-medical-notes")
+
 folder = "streamlit/assets/"
 files = [file.split(".")[0] for file in os.listdir(folder)]
 
