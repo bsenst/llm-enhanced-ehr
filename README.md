@@ -36,3 +36,4 @@ streamlit run streamlit/app.py
 
 Optional features:
 - [ ] set up free database to store user feedback ([streamlit feedback](https://github.com/trubrics/streamlit-feedback))
+- [ ] implement [LangChain extraction pipeline](https://python.langchain.com/docs/use_cases/extraction) to turn unstructured to structured medical notes (ideally FHIR format)
