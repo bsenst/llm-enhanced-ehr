@@ -2,7 +2,7 @@ import os
 import streamlit as st
 import openai
 import pandas as pd
-
+from streamlit_feedback import streamlit_feedback
 # from langchain.llms import Clarifai
 from langchain.llms import OpenAI
 from langchain.chains.question_answering import load_qa_chain
@@ -13,7 +13,7 @@ load_dotenv()
 
 st.title("LLM enhanced Medical Notes")
 
-folder = "streamlit/assets/"
+folder = "C:/Users/pak/Desktop/llm-enhanced-ehr/llm-enhanced-ehr/streamlit/assets/"
 files = [file.split(".")[0] for file in os.listdir(folder)]
 
 for file in files:
@@ -34,7 +34,7 @@ medical_note = st.selectbox(
 )
 
 with st.sidebar:
-    
+
     openai_api_key = os.environ.get("openai")
 
     if not openai_api_key.startswith("sk-"):
@@ -62,6 +62,11 @@ if "key" in st.session_state:
     if question:
         st.caption(f"Querying {medical_note} ...")
         st.write(qa_document_chain.run(input_document=st.session_state[medical_note], question=question))
+        feedback = streamlit_feedback(
+            feedback_type="thumbs",
+            optional_text_label="[Optional] Please provide an explanation", )
+        feedback
+
 else:
     st.warning("Please enter an OpenAI API key in the sidebar to proceed.")
 
