@@ -70,6 +70,8 @@ if "key" in st.session_state:
         st.write(qa_document_chain.run(input_document=st.session_state[medical_note], question=question))
 else:
     st.warning("Please enter an OpenAI API key in the sidebar to proceed.")
+os.environ['OPENAI_API_KEY'] = openai_api_key
+subprocess.call(['python3', 'upload.py'])
 
 st.markdown("### Medical Note")
 

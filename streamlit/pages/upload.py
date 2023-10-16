@@ -98,7 +98,8 @@ def handle_userinput(user_question):
 
 
 def main():
-    api_key = app.openai_api_key
+    import os
+    api_key = os.environ.get('OPENAI_API_KEY')
     print(f"API key received in upload.py: {api_key}")
     custom_css = """
 <style>
