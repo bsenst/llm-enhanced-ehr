@@ -7,6 +7,7 @@ from langchain.vectorstores import FAISS
 from langchain.chat_models import ChatOpenAI
 from langchain.memory import ConversationBufferMemory
 from langchain.chains import ConversationalRetrievalChain
+from htmlTemplates import css, bot_template, user_template
 from langchain.llms import HuggingFaceHub
 import app
 
@@ -36,7 +37,6 @@ def get_text_from_txt(txt_docs):
     return text
 
 
-
 def get_text_content(uploaded_files):
     text = ""
     for file in uploaded_files:
@@ -49,6 +49,9 @@ def get_text_content(uploaded_files):
             st.error(f"File format '{file.type}' is not supported. Please upload a PDF, DOCX, or TXT file.")
             return None
     return text
+
+
+
 def get_text_chunks(text):
     text_splitter = CharacterTextSplitter(
         separator="\n",
@@ -87,13 +90,14 @@ def handle_userinput(user_question):
 
     for i, message in enumerate(st.session_state.chat_history):
         if i % 2 == 0:
-            st.write(
-                "{{MSG}}", message.content, unsafe_allow_html=True)
+            st.write(user_template.replace(
+                "{{MSG}}", message.content), unsafe_allow_html=True)
         else:
-            st.write(
-                "{{MSG}}", message.content, unsafe_allow_html=True)
+            st.write(bot_template.replace(
+                "{{MSG}}", message.content), unsafe_allow_html=True)
+
+
 def main():
-    load_dotenv()
     api_key = app.openai_api_key
     print(f"API key received in upload.py: {api_key}")
     custom_css = """
@@ -103,13 +107,13 @@ def main():
 }
 </style>
 """
-    st.set_page_config(page_title="Medical report",
-                       page_icon=":magic_wand:")
-    st.write( unsafe_allow_html=True)
- 
+    st.set_page_config(page_title="Medical Report",
+                       page_icon=":medical:")
+    st.write(css, unsafe_allow_html=True)
+
     st.markdown(custom_css, unsafe_allow_html=True)
     st.header("Medical Report")
-    uploaded_files = st.file_uploader("Upload your medical report:", accept_multiple_files=True)
+    uploaded_files = st.file_uploader("Upload your Medical Report:", accept_multiple_files=True)
 
     if uploaded_files:
         with st.spinner("Processing"):
@@ -121,13 +125,13 @@ def main():
                     st.session_state.conversation = get_conversation_chain(
                             vectorstore)
     with st.form(key='user_input_form'):
-        user_question = st.text_area("Ask anything related to your report:")
+        user_question = st.text_area("Enter a query according to your report:")
         generate_button = st.form_submit_button("Generate Response")
     if generate_button:
         if user_question:
             handle_userinput(user_question)
             
-
-
+    
+ 
 if __name__ == '__main__':
     main()

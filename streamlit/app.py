@@ -7,6 +7,7 @@ import subprocess
 from langchain.llms import OpenAI
 from langchain.chains.question_answering import load_qa_chain
 from langchain.chains import AnalyzeDocumentChain
+from htmlTemplates import css, bot_template, user_template
 
 from dotenv import load_dotenv
 load_dotenv()
@@ -14,6 +15,7 @@ load_dotenv()
 st.title("LLM enhanced Medical Notes")
 
 st.markdown("See the project description [fritzlabs/llm-enhanced-medical-notes](https://lablab.ai/event/ai-challenge-with-gpt-3-5-codex-dall-e-and-whisper-api/fritzlabs/llm-enhanced-medical-notes)")
+st.write(css, unsafe_allow_html=True)
 
 folder = "streamlit/assets/"
 files = [file.split(".")[0] for file in os.listdir(folder)]
@@ -50,9 +52,10 @@ with st.sidebar:
             engines = openai.Engine.list()
             # Display a success message
             st.success("Your OpenAI API key is valid!")
-            subprocess.call(['python3', 'upload.py', openai_api_key])
 
             st.session_state["key"] = openai_api_key  # Assign the variable to a key
+            subprocess.call(['python3', 'upload.py', openai_api_key])
+
         except openai.error.AuthenticationError:
             # Display an error message
             st.error("Your OpenAI API key is invalid.")

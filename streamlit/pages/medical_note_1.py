@@ -1,6 +1,8 @@
 import streamlit as st
+from htmlTemplates import css, bot_template, user_template
 
 st.title("Medical Note 1")
+st.write(css, unsafe_allow_html=True)
 
 if "medical_note_1" not in st.session_state:
     st.session_state.medical_note_1 = None
