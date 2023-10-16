@@ -1,107 +1,19 @@
 import os
 import streamlit as st
 import openai
-#from streamlit_feedback import streamlit_feedback
+import pandas as pd
+import subprocess
+# from langchain.llms import Clarifai
 from langchain.llms import OpenAI
 from langchain.chains.question_answering import load_qa_chain
 from langchain.chains import AnalyzeDocumentChain
-from langchain.chat_models import ChatOpenAI
-from langchain.chains import create_extraction_chain
-import json
-
-schema = {
-    "properties": {
-        "patient_name": {"type": "string"},
-        "age": {"type": "integer"},
-        "gender": {"type": "string"},
-        "medical_record_number": {"type": "integer"},
-        "date_of_visit": {"type": "string"},
-        "reason_for_visit": {"type": "string"},
-        "medical_history": {
-            "type": "object",
-            "properties": {
-                "childhood_adolescence": {
-                    "type": "string",
-                },
-                "teenage_years": {
-                    "type": "string",
-                },
-                "early_adulthood": {
-                    "type": "string",
-                },
-                "mid_adulthood": {
-                    "type": "string",
-                },
-                "late_adulthood": {
-                    "type": "string",
-                },
-                "recent_years": {
-                    "type": "string",
-                }
-            }
-        },
-        "current_symptoms": {"type": "string"},
-        "vital_signs": {
-            "type": "object",
-            "properties": {
-                "blood_pressure": {"type": "string"},
-                "heart_rate": {"type": "integer"},
-                "respiratory_rate": {"type": "integer"},
-                "temperature": {"type": "string"},
-            },
-            "required": ["blood_pressure", "heart_rate", "respiratory_rate", "temperature"]
-        },
-        "allergies": {"type": "string"},
-        "medications": {"type": "string"},
-        "physical_examination": {"type": "string"},
-        "neurological_examination": {"type": "string"},
-        "assessment_and_plan": {"type": "string"},
-        "chronic_medical_conditions": {"type": "string"},
-        "acute_issue": {"type": "string"},
-        "plan_for_conservative_management": {"type": "string"},
-        "patient_education": {"type": "string"},
-        "follow_up": {"type": "string"},
-        "date_of_birth": {"type": "string"},
-        "medical_history": {
-            "type": "object",
-            "properties": {
-                "childhood_adolescence": {
-                    "type": "string",
-                },
-                "teenage_years": {
-                    "type": "string",
-                },
-                "early_adulthood": {
-                    "type": "string",
-                },
-                "mid_adulthood": {
-                    "type": "string",
-                },
-                "late_adulthood": {
-                    "type": "string",
-                },
-                "recent_years": {
-                    "type": "string",
-                }
-            }
-        }
-    },
-    "required": [
-        "patient_name", "age", "gender", "medical_record_number", "date_of_visit",
-        "reason_for_visit", "medical_history", "current_symptoms", "vital_signs",
-        "allergies", "medications", "physical_examination", "neurological_examination",
-        "assessment_and_plan", "chronic_medical_conditions", "acute_issue",
-        "plan_for_conservative_management", "patient_education", "follow_up",
-        "date_of_birth"
-    ]
-}
-
-
 
 from dotenv import load_dotenv
 load_dotenv()
 
 st.title("LLM enhanced Medical Notes")
+
+st.markdown("See the project description [fritzlabs/llm-enhanced-medical-notes](https://lablab.ai/event/ai-challenge-with-gpt-3-5-codex-dall-e-and-whisper-api/fritzlabs/llm-enhanced-medical-notes)")
 
 folder = "streamlit/assets/"
 files = [file.split(".")[0] for file in os.listdir(folder)]
@@ -112,8 +24,7 @@ for file in files:
 
 # USER_ID = "openai"
 # APP_ID = "chat-completion"
-# MODEL_ID = "gpt-3.5-turbo"
-# os.environ["CLARIFAI_PAT"] = "a78c469c2434401d9b99330924e6a4e0"
+# MODEL_ID = "GPT-3_5-turbo"
 
 # llm = Clarifai(
 #     pat=os.environ.get("CLARIFAI_PAT"), user_id=USER_ID, app_id=APP_ID, model_id=MODEL_ID
@@ -125,7 +36,7 @@ medical_note = st.selectbox(
 )
 
 with st.sidebar:
-
+    
     openai_api_key = os.environ.get("openai")
 
     if not openai_api_key.startswith("sk-"):
@@ -139,6 +50,7 @@ with st.sidebar:
             engines = openai.Engine.list()
             # Display a success message
             st.success("Your OpenAI API key is valid!")
+            subprocess.call(['python3', 'upload.py', openai_api_key])
 
             st.session_state["key"] = openai_api_key  # Assign the variable to a key
         except openai.error.AuthenticationError:
@@ -153,17 +65,6 @@ if "key" in st.session_state:
     if question:
         st.caption(f"Querying {medical_note} ...")
         st.write(qa_document_chain.run(input_document=st.session_state[medical_note], question=question))
-        # feedback = streamlit_feedback(
-        #     feedback_type="thumbs",
-        #     optional_text_label="[Optional] Please provide an explanation", )
-        #
-        # Run chain
-        llm = ChatOpenAI(temperature=0, model="gpt-3.5-turbo",openai_api_key=openai_api_key)
-        chain = create_extraction_chain(schema, llm)
-        data = chain.run(medical_note)
-        with open("data.json", "w") as f:  # open the file in write mode
-            json.dump(data, f, indent= 4)  # dump the Python object to the file
-
 else:
     st.warning("Please enter an OpenAI API key in the sidebar to proceed.")
 
